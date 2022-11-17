@@ -104,6 +104,6 @@ before-all = [
 before-all = [
     "brew install netcdf-fortran",
     "nc-config --all",
-    "export FC=$(nf-config --fc)",
 ]
+before-build = "export FC=$(nf-config --fc)"
 
