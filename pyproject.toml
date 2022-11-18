@@ -81,9 +81,6 @@ multi_line_output = 3
 # Super-verbose output for debugging purpose
 build-verbosity = 3
 
-# We restrict ourselves to CPython 3.8 for now
-build = ["cp38-*"]
-
 # skip pypy and musl
 skip = ["pp*", "*-musllinux_*"]
 
