@@ -88,25 +88,13 @@ build = ["cp38-*"]
 skip = ["pp*", "*-musllinux_*"]
 
 # check command
-test-command = "mhm -h"
-
-manylinux-x86_64-image = "manylinux_2_24"
+test-command = "mhm -h && mhm"
+# compile dependencies
+before-all = "source CI-scripts/install-deps"
 
 [tool.cibuildwheel.linux]
-environment = { FC="gfortran" }
-# before-all = "yum -y install netcdf-fortran-devel"
-before-all = [
-    "apt-get update -y",
-    "apt-get install -y libnetcdff-dev",
-]
+environment = { FC="gfortran", F77="gfortran", CC="gcc", CXX="g++" }
 
 [tool.cibuildwheel.macos]
 environment = { FC="gfortran-11", F77="gfortran-11", CC="gcc-11", CXX="g++-11" }
-before-all = [
-    "source CI-scripts/install-deps",
-#    "source CI-scripts/zlib-install 2.0.6",
-#    "source CI-scripts/hdf5-install hdf5-1_12_2",
-#    "source CI-scripts/nc-install v4.8.1",
-#    "source CI-scripts/nf-install v4.5.4",
-]
 

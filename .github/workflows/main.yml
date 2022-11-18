@@ -43,8 +43,8 @@ jobs:
       fail-fast: false
       matrix:
         cfg:
-        # - { os: ubuntu-latest, arch: x86_64 }
-        - { os: macos-12, arch: x86_64 }
+        - { os: ubuntu-latest, arch: x86_64 }
+        - { os: macos-latest, arch: x86_64 }
 
     steps:
       - uses: actions/checkout@v2
