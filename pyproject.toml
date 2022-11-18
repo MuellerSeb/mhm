@@ -79,12 +79,12 @@ multi_line_output = 3
 [tool.cibuildwheel]
 # Super-verbose output for debugging purpose
 build-verbosity = 3
-
 # skip pypy and musl
 skip = ["py37*", "pp*", "*-musllinux_*"]
-
 # check command
 test-command = "mhm -h && mhm {project}"
+# Skip trying to test arm64 builds on Intel Macs
+test-skip = "*-macosx_arm64"
 
 [tool.cibuildwheel.linux]
 environment = { FC="gfortran", F77="gfortran", CC="gcc", CXX="g++" }
@@ -93,4 +93,3 @@ before-all = "source CI-scripts/install-deps /usr && ldconfig"
 [tool.cibuildwheel.macos]
 environment = { FC="gfortran-11", F77="gfortran-11", CC="gcc-11", CXX="g++-11" }
 before-all = "source CI-scripts/install-deps-sudo /opt/local"
-
