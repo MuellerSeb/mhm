@@ -101,7 +101,7 @@ before-all = [
 ]
 
 [tool.cibuildwheel.macos]
-environment = { FC="gfortran-11", F77="gfortran-11", CC="gcc-11", CXX="g++-11", NetCDF_ROOT="/opt/local" }
+environment = { FC="gfortran-11", F77="gfortran-11", CC="gcc-11", CXX="g++-11" }
 before-all = [
     "source CI-scripts/hdf5-install hdf5-1_12_2",
     "source CI-scripts/nc-install v4.8.1",
