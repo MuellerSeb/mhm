@@ -3,6 +3,8 @@ cd hdf5
 git checkout ${1}
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/local \
   -DCMAKE_PREFIX_PATH=/opt/local \
+  -DZLIB_LIBRARY=/opt/local/lib/libz.a \
+  -DZLIB_INCLUDE_DIR=/opt/local/include \
   -DHDF5_DISABLE_COMPILER_WARNINGS=ON \
   -DUSE_LIBAEC=ON \
   -DHDF5_ENABLE_Z_LIB_SUPPORT=ON \
