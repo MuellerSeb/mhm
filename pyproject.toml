@@ -103,7 +103,7 @@ before-all = [
 [tool.cibuildwheel.macos]
 environment = { FC="gfortran-11", F77="gfortran-11", CC="gcc-11", CXX="g++-11" }
 before-all = [
-    "sudo source CI-scripts/install-deps",
+    "sudo -s source CI-scripts/install-deps",
 #    "source CI-scripts/zlib-install 2.0.6",
 #    "source CI-scripts/hdf5-install hdf5-1_12_2",
 #    "source CI-scripts/nc-install v4.8.1",
