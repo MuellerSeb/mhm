@@ -1,0 +1,18 @@
+export LOCALDIR=~/netcdf_test
+git clone https://github.com/Unidata/netcdf-fortran.git
+cd netcdf-fortran
+git checkout ${1}
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$(nc-config --prefix) \
+  -DCMAKE_PREFIX_PATH=$(nc-config --prefix) \
+  -DENABLE_TESTS=OFF \
+  -DBUILD_EXAMPLES=OFF \
+  -DBUILD_SHARED_LIBS=ON \
+  -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+  -DUSE_LOGGING=OFF \
+  -DCMAKE_INSTALL_LIBDIR=lib \
+  -B build
+cmake --build build --parallel --config Release
+cmake --install build --config Release --prefix $(nc-config --prefix)
+cd ..
+rm -rf netcdf-fortran
+

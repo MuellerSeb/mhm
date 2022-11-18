@@ -101,10 +101,9 @@ before-all = [
 ]
 
 [tool.cibuildwheel.macos]
-environment = { FC="gfortran" }
+environment = { FC="gfortran-11", CC="gcc-11" }
 before-all = [
-    "brew install gcc@11",
-    "brew install netcdf-fortran",
-    "nc-config --all",
+    "brew install netcdf",
+    "source CI/nf-install v4.6.0",
 ]
 
