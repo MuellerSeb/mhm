@@ -1,0 +1,22 @@
+git clone https://github.com/HDFGroup/hdf5.git
+cd hdf5
+git checkout ${1}
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/local \
+  -DCMAKE_PREFIX_PATH=/opt/local \
+  -DHDF5_DISABLE_COMPILER_WARNINGS=ON \
+  -DUSE_LIBAEC=ON \
+  -DHDF5_ENABLE_Z_LIB_SUPPORT=ON \
+  -DZLIB_USE_EXTERNAL=OFF \
+  -DHDF5_BUILD_FORTRAN=ON \
+  -DHDF5_BUILD_CPP_LIB=OFF \
+  -DHDF5_BUILD_TOOLS=OFF \
+  -DBUILD_TESTING=OFF \
+  -DHDF5_BUILD_EXAMPLES=OFF \
+  -DHDF5_GENERATE_HEADERS=OFF \
+  -DBUILD_STATIC_LIBS=ON \
+  -DBUILD_SHARED_LIBS=OFF \
+  -B build
+cmake --build build --parallel --config Release
+cmake --install build --config Release --prefix /opt/local
+cd .. && rm -rf hdf5
+

@@ -1,0 +1,12 @@
+git clone https://github.com/zlib-ng/zlib-ng.git
+cd zlib-ng
+git checkout ${1}
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/local \
+  -DZLIB_COMPAT=ON \
+  -DBUILD_SHARED_LIBS=OFF \
+  -DZLIB_ENABLE_TESTS=OFF \
+  -B build
+cmake --build build --parallel --config Release
+cmake --install build --config Release --prefix /opt/local
+cd .. && rm -rf zlib-ng
+

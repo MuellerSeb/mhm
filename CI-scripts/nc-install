@@ -1,0 +1,22 @@
+git clone https://github.com/Unidata/netcdf-c.git
+cd netcdf-c
+git checkout ${1}
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/local \
+  -DCMAKE_PREFIX_PATH=/opt/local \
+  -DBUILD_SHARED_LIBS=ON \
+  -DENABLE_PARALLEL4=OFF \
+  -DENABLE_PNETCDF=OFF \
+  -DBUILD_UTILITIES=OFF \
+  -DENABLE_TESTS=OFF \
+  -DBUILD_TESTING=OFF \
+  -DENABLE_HDF4=OFF \
+  -DUSE_DAP=OFF \
+  -DENABLE_DAP=OFF \
+  -DENABLE_DAP2=OFF \
+  -DENABLE_DAP4=OFF \
+  -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+  -B build
+cmake --build build --parallel --config Release
+cmake --install build --config Release --prefix /opt/local
+cd .. && rm -rf netcdf-c
+
