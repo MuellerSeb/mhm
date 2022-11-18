@@ -11,5 +11,6 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
   -DCMAKE_INSTALL_LIBDIR=lib \
   -B build
 cmake --build build --parallel --config Release
-cmake --install build --config Release --prefix /usr
+sudo cmake --install build --config Release --prefix /usr
 cd .. && rm -rf netcdf-fortran
+
