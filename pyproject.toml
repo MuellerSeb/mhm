@@ -88,13 +88,13 @@ build = ["cp38-*"]
 skip = ["pp*", "*-musllinux_*"]
 
 # check command
-test-command = "mhm -h && mhm"
-# compile dependencies
-before-all = "source CI-scripts/install-deps"
+test-command = "mhm -h && mhm {project}"
 
 [tool.cibuildwheel.linux]
 environment = { FC="gfortran", F77="gfortran", CC="gcc", CXX="g++" }
+before-all = "source CI-scripts/install-deps"
 
 [tool.cibuildwheel.macos]
 environment = { FC="gfortran-11", F77="gfortran-11", CC="gcc-11", CXX="g++-11" }
+before-all = "source CI-scripts/install-deps-sudo"
 
