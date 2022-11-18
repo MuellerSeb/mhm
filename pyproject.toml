@@ -1,7 +1,7 @@
 [build-system]
 requires = [
     "setuptools>=63,<64",
-    "setuptools_scm[toml]>=6.4",
+    "setuptools_scm[toml]>=7",
     "scikit-build>=0.16,<0.17",
     "cmake",
     "ninja",
@@ -11,7 +11,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 name = "mhm"
 description = "Python distribution of mHM with bindings."
 authors = [{name = "Sebastian Müller", email = "sebastian.mueller@ufz.de"}]
@@ -35,7 +35,6 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
@@ -70,7 +69,7 @@ search_parent_directories = true
 
 [tool.black]
 exclude = "_version.py"
-target-version = ["py37"]
+target-version = ["py38"]
 
 [tool.isort]
 profile = "black"
@@ -82,7 +81,7 @@ multi_line_output = 3
 build-verbosity = 3
 
 # skip pypy and musl
-skip = ["pp*", "*-musllinux_*"]
+skip = ["py37*", "pp*", "*-musllinux_*"]
 
 # check command
 test-command = "mhm -h && mhm {project}"
