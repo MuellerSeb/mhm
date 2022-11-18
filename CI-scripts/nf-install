@@ -12,6 +12,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$(nc-config --prefix) \
   -B build
 cmake --build build --parallel --config Release
 cmake --install build --config Release --prefix $(nc-config --prefix)
+cmake --install build --config Release --prefix ../pybind/mhm
 cd ..
 rm -rf netcdf-fortran
 
