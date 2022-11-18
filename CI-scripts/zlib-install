@@ -3,7 +3,7 @@ cd zlib-ng
 git checkout ${1}
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/local \
   -DZLIB_COMPAT=ON \
-  -DBUILD_SHARED_LIBS=OFF \
+  -DBUILD_SHARED_LIBS=ON \
   -DZLIB_ENABLE_TESTS=OFF \
   -B build
 cmake --build build --parallel --config Release
