@@ -14,14 +14,11 @@ build-backend = "setuptools.build_meta"
 requires-python = ">=3.8"
 name = "mhm"
 description = "Python distribution of mHM with bindings."
-authors = [{name = "Sebastian Müller", email = "sebastian.mueller@ufz.de"}]
+authors = [{name = "mHM Developers", email = "mhm-admin@ufz.de"}]
 readme = "README.md"
 license = {text = "LGPL-3.0"}
 dynamic = ["version"]
-keywords = [
-    "mHM",
-]
-
+keywords = ["mHM"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -75,16 +72,13 @@ target-version = ["py38"]
 profile = "black"
 multi_line_output = 3
 
-
 [tool.cibuildwheel]
 # Super-verbose output for debugging purpose
 build-verbosity = 3
 # skip pypy and musl
-skip = ["cp38-macosx_arm64", "cp37*", "pp*", "*-musllinux_*"]
+skip = ["cp37*", "pp*", "*-musllinux_*"]
 # check command
 test-command = "mhm -h && mhm {project}"
-# Skip trying to test arm64 builds on Intel Macs
-test-skip = "*-macosx_arm64"
 
 [tool.cibuildwheel.linux]
 environment = { FC="gfortran", F77="gfortran", CC="gcc", CXX="g++" }
