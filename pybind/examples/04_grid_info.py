@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-
 import mhm
 
 # assuming the mhm repo to be in the parent dir

@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
-import numpy as np
-
 import mhm
+import numpy as np
 
 # assuming the mhm repo to be in the parent dir
 mhm.model.init(

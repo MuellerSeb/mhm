@@ -1,9 +1,8 @@
 from datetime import datetime
 
 import matplotlib.pyplot as plt
-import numpy as np
-
 import mhm
+import numpy as np
 
 plt.ion()
 fig = plt.figure()
