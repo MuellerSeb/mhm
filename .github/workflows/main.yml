@@ -33,7 +33,7 @@ jobs:
           install: >-
             git
             make
-            m4
+            # m4 # <-- causing problems in netcdf-fortran/docs
           pacboy: >-
             toolchain:p
             cmake:p
