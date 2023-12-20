@@ -50,11 +50,11 @@ jobs:
           # source CI-scripts/install-deps -p ./test_deps
           git clone --depth 1 --branch v4.6.1 https://github.com/Unidata/netcdf-fortran.git
           cd netcdf-fortran
-          cmake -G "MinGW Makefiles" -Bbuild -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(nc-config --prefix)" -DCMAKE_INSTALL_PREFIX="$(nc-config --prefix)" -D BUILD_V2=OFF -DBUILD_SHARED_LIBS=ON -DCMAKE_GNUtoMS=ON
+          cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(nc-config --prefix)" -DCMAKE_INSTALL_PREFIX="$(nc-config --prefix)" -D BUILD_V2=OFF -DBUILD_SHARED_LIBS=ON -DCMAKE_GNUtoMS=ON
           cmake --build build --config Release --target install
           nf-config --all
           cd ..
-          cmake -Bbuild
+          cmake -GNinja -Bbuild
           cmake --build build --parallel
           ./build/mhm
 
