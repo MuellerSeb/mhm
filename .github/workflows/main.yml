@@ -31,13 +31,26 @@ jobs:
           msystem: MINGW64
           path-type: inherit
           install: >-
-            mingw-w64-x86_64-gcc-fortran
+            git
+            make
+          pacboy: >-
+            toolchain:p
+            cmake:p
+            ninja:p
+            netcdf:p
 
       - name: install_deps
         env:
-          CIBW_ARCHS: ${{ matrix.cfg.arch }}
+          FC: gfortran
+          CC: gcc
+          CXX: g++
         run: |
-          source CI-scripts/install-deps -p ./test_deps
+          nc-config --all
+          # source CI-scripts/install-deps -p ./test_deps
+          git clone --depth 1 --branch v4.6.1 https://github.com/Unidata/netcdf-fortran.git
+          cd netcdf-fortran
+          cmake -Bbuild -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(nc-config --prefix)" -DCMAKE_INSTALL_PREFIX="$(nc-config --prefix)" -D BUILD_V2=OFF -DBUILD_SHARED_LIBS=ON -DCMAKE_GNUtoMS=ON
+          cmake --build build --config Release --target install
 
   # build_sdist:
   #   name: sdist
