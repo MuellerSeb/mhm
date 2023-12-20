@@ -52,11 +52,24 @@ jobs:
           cd netcdf-fortran
           cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(nc-config --prefix)" -DCMAKE_INSTALL_PREFIX="$(nc-config --prefix)" -D BUILD_V2=OFF -DBUILD_SHARED_LIBS=ON -DCMAKE_GNUtoMS=ON
           cmake --build build --config Release --target install
-          nf-config --all
+          # nf-config --all  # <-- not working here, but ncf still findable
           cd ..
           cmake -GNinja -Bbuild
           cmake --build build --parallel
           ./build/mhm
+
+      - name: Build and test wheels
+        uses: pypa/cibuildwheel@v2.16.2
+        env:
+          CIBW_BUILD: cp310-win_amd64
+          FC: gfortran
+          CC: gcc
+          CXX: g++
+
+      - name: Store artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: wheelhouse/*.whl
 
   # build_sdist:
   #   name: sdist
