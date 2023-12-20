@@ -144,3 +144,7 @@ before-all = "source CI-scripts/install-deps -c -p /usr"
 [tool.cibuildwheel.macos]
 environment = { FC="gfortran-11", F77="gfortran-11", CC="gcc-11", CXX="g++-11" }
 before-all = "source CI-scripts/install-deps -s -p /opt/local"
+
+[tool.cibuildwheel.windows]
+archs = ["auto64"]
+environment = { FC="gfortran", F77="gfortran", CC="gcc", CXX="g++" }

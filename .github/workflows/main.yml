@@ -58,13 +58,19 @@ jobs:
           cmake --build build --parallel
           ./build/mhm
 
+      # - name: Build and test wheels
+      #   uses: pypa/cibuildwheel@v2.16.2
+      #   env:
+      #     CIBW_BUILD: cp310-win_amd64
+      #     FC: gfortran
+      #     CC: gcc
+      #     CXX: g++
+
       - name: Build and test wheels
-        uses: pypa/cibuildwheel@v2.16.2
         env:
           CIBW_BUILD: cp310-win_amd64
-          FC: gfortran
-          CC: gcc
-          CXX: g++
+        run: |
+          pipx run cibuildwheel
 
       - name: Store artifacts
         uses: actions/upload-artifact@v3
