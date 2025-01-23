@@ -1,7 +1,7 @@
 [build-system]
 requires = [
-    "scikit_build_core[pyproject]>=0.10,<0.11",
-    "setuptools_scm[toml]>=7,<8",
+    "scikit_build_core>=0.10,<0.11",
+    "setuptools_scm>=8",
     "numpy>=2.0.0rc1,<2.3; python_version >= '3.9'",
     "oldest-supported-numpy; python_version < '3.9'",
     "fypp",
