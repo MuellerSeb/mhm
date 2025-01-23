@@ -139,11 +139,10 @@ build-verbosity = 3
 skip = ["cp37*", "pp*", "*-musllinux_*"]
 # check command
 test-command = "mhm -h && mhm {project}"
+environment = { FC="gfortran-12", F77="gfortran-12", CC="gcc-12", CXX="g++-12" }
 
 [tool.cibuildwheel.linux]
-environment = { FC="gfortran", F77="gfortran", CC="gcc", CXX="g++" }
 before-all = "source CI-scripts/install-deps -c -p /usr"
 
 [tool.cibuildwheel.macos]
-environment = { FC="gfortran-11", F77="gfortran-11", CC="gcc-11", CXX="g++-11" }
 before-all = "source CI-scripts/install-deps -s -p /opt/local"
