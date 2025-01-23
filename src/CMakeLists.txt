@@ -16,19 +16,19 @@ endif()
 target_include_directories(${LIB_NAME} PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
 
 # add FORCES
+# when building sdist download forces to top folder with CPM by setting "source cache"
+if(${SKBUILD_STATE} MATCHES "sdist")
+  set(FORCES_WITH_NETCDF OFF)  # we don't need netcdf to create sdist
+  message(STATUS "mHM: downloading forces for sdist")
+  file(REMOVE_RECURSE "${CMAKE_CURRENT_SOURCE_DIR}/../forces")
+endif()
+# use CPM
 include(../cmake/CPM.cmake)
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../forces")
   message(STATUS "mHM: found local forces directory")
   set(CPM_forces_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/../forces" CACHE PATH "Local source path for FORCES.")
 else()
   set(CPM_forces_SOURCE $ENV{MHM_BUILD_FORCES_PATH} CACHE PATH "Local source path for FORCES.")
-endif()
-# when building sdist download forces to top folder with CPM by setting "source cache"
-if(${SKBUILD_STATE} MATCHES "sdist")
-  set(FORCES_WITH_NETCDF OFF)  # we don't need netcdf to create sdist
-  message(STATUS "mHM: downloading forces for sdist")
-  set(CPM_SOURCE_CACHE "${CMAKE_CURRENT_SOURCE_DIR}/deps")
-  set(CPM_forces_SOURCE "")
 endif()
 # check forces version file
 file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/../version_forces.txt" ver_forces LIMIT_COUNT 1)
@@ -41,11 +41,10 @@ endif()
 target_link_libraries(${LIB_NAME} PUBLIC forces)
 
 if(${SKBUILD_STATE} MATCHES "sdist")
-    file(REMOVE_RECURSE "${CMAKE_CURRENT_SOURCE_DIR}/../forces")
-    file(GLOB _fpath RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/deps/forces" "${CMAKE_CURRENT_SOURCE_DIR}/deps/forces/*")
-    file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/deps/forces/${_fpath}" DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/..")
+    file(COPY "${FORCES_SOURCE_DIR}" DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/..")
+    get_filename_component(_fpath "${FORCES_SOURCE_DIR}" NAME)
     file(RENAME "${CMAKE_CURRENT_SOURCE_DIR}/../${_fpath}" "${CMAKE_CURRENT_SOURCE_DIR}/../forces")
-    message(STATUS "mHM: copy forces to ./forces")
+    message(STATUS "mHM: copied forces from '${FORCES_SOURCE_DIR}' to './forces'.")
 endif()
 
 # check mhm specific env-vars
