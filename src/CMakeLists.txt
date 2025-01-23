@@ -42,7 +42,7 @@ target_link_libraries(${LIB_NAME} PUBLIC forces)
 
 if(${SKBUILD_STATE} MATCHES "sdist")
     file(REMOVE_RECURSE "${CMAKE_CURRENT_SOURCE_DIR}/../forces")
-    file(GLOB _fpath RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/deps/forces" "${CMAKE_CURRENT_SOURCE_DIR}/deps/forces/*")
+    file(GLOB _fpath RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/deps/forces" "${CMAKE_CURRENT_SOURCE_DIR}/deps/forces/[a-z0-9]*")
     file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/deps/forces/${_fpath}" DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/..")
     file(RENAME "${CMAKE_CURRENT_SOURCE_DIR}/../${_fpath}" "${CMAKE_CURRENT_SOURCE_DIR}/../forces")
     message(STATUS "mHM: copy forces to ./forces")
