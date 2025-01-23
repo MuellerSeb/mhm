@@ -36,8 +36,8 @@ pybindings:
   variables:
     GIT_DEPTH: 0  # to have all tags
   script:
-    - module load Mamba/23.3.1-1
-    - mamba create -p ./mhm_env -y python=3.10 pip netcdf-fortran fortran-compiler c-compiler cxx-compiler fypp python-build black isort pytest-cov xarray netCDF4
+    - module load Mamba
+    - mamba create -p ./mhm_env -y python=3.11 pip netcdf-fortran fortran-compiler c-compiler cxx-compiler fypp python-build black isort pytest-cov xarray netCDF4
     - source activate ./mhm_env
     # check source code
     - black --check --diff pybind
