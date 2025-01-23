@@ -31,20 +31,6 @@ show-env-vars:
   script:
     - echo -e "${SEP}\n${S00}$(date)\n${SEP}\n${S01}\n${S02}\n${S03}\n${S04}\n${SEP}\n${S05}${GIT_CLONE_PATH}\n${S06}\n${SEP}"
 
-
-###############
-### CONFIGS ###
-###############
-
-# doc stable variables
-.doc_stable_vars: &doc_stable_vars
-  GIT_DEPTH: 0
-  DOC_TYPE: stable
-
-# doc latest variables
-.doc_latest_vars: &doc_latest_vars
-  DOC_TYPE: latest
-
 #################
 ### TEMPLATES ###
 #################
