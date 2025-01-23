@@ -60,17 +60,16 @@ show-env-vars:
     - if [ $(git rev-list --tags --max-count=1) ] && [ $DOC_TYPE == "stable" ]; then git checkout $(git describe --tags $(git rev-list --tags --max-count=1)); fi
     - export PROJECT_NUMBER="$(cat version.txt)"
     - doxygen doc/doxygen.config > doxygen_log_${DOC_TYPE}.txt 2>&1 # doxygen_log_stable.txt
-    - sed -i '/\\chapter{Module Documentation}/{x;s/^/x/;/xx/{x;s/.*/\\chapter{Package Documentation}/;b};x;}' latex/refman.tex
     - cd latex/ && tectonic -r 10 -Z continue-on-errors refman.tex > ../doxygen_latex_${DOC_TYPE}.txt 2>&1     # ../doxygen_latex_stable.txt
-    - cp refman.pdf ../html/project_doc.pdf                         # same name always
-    - cp refman.pdf ../project_doc_${DOC_TYPE}.pdf                  # ../project_doc_stable.pdf
+    - cp refman.pdf ../html/mhm_doc.pdf                             # same name always
+    - cp refman.pdf ../mhm_doc_${DOC_TYPE}.pdf                      # ../mhm_doc_stable.pdf
     - cd .. && mv html html_${DOC_TYPE}                             # html_stable
     - mv doxygen_warn.txt doxygen_warn_${DOC_TYPE}.txt              # doxygen_warn_stable.txt
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
       - html_*
-      - project_doc_*.pdf
+      - mhm_doc_*.pdf
       - doxygen_*.txt
 
 .cmake_template: &cmake_template
