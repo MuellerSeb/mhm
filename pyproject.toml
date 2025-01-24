@@ -134,7 +134,7 @@ show_missing = true
 
 [tool.cibuildwheel]
 # Super-verbose output for debugging purpose
-build-verbosity = 3
+build-verbosity = 0
 # skip py37, pypy and musl
 skip = ["cp37*", "pp*", "*-musllinux_*"]
 # check command
@@ -142,8 +142,8 @@ test-command = "mhm -h && mhm {project}"
 
 [tool.cibuildwheel.linux]
 environment = { FC="gfortran", F77="gfortran", CC="gcc", CXX="g++" }
-before-all = "source CI-scripts/install-deps -c -p /usr"
+before-all = "apt install netcdf-fortran && nf-config"
 
 [tool.cibuildwheel.macos]
 environment = { FC="gfortran-14", F77="gfortran-14", CC="gcc-14", CXX="g++-14", MACOSX_DEPLOYMENT_TARGET="13.0" }
-before-all = "brew install netcdf-fortran && nf-config --all"
+before-all = "brew install netcdf-fortran && nf-config"
