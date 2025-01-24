@@ -143,7 +143,7 @@ manylinux-x86_64-image = "manylinux_2_28"
 
 [tool.cibuildwheel.linux]
 environment = { FC="gfortran", F77="gfortran", CC="gcc", CXX="g++" }
-before-all = "dnf install netcdf-fortran-devel -y && nf-config"
+before-all = "sudo dnf makecache && sudo dnf install netcdf-fortran-devel -y && nf-config"
 
 [tool.cibuildwheel.macos]
 environment = { FC="gfortran-14", F77="gfortran-14", CC="gcc-14", CXX="g++-14", MACOSX_DEPLOYMENT_TARGET="13.0" }
