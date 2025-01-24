@@ -142,7 +142,7 @@ test-command = "mhm -h && mhm {project}"
 
 [tool.cibuildwheel.linux]
 environment = { FC="gfortran", F77="gfortran", CC="gcc", CXX="g++" }
-before-all = "apt install netcdf-fortran && nf-config"
+before-all = "sudo apt install netcdf-fortran && nf-config"
 
 [tool.cibuildwheel.macos]
 environment = { FC="gfortran-14", F77="gfortran-14", CC="gcc-14", CXX="g++-14", MACOSX_DEPLOYMENT_TARGET="13.0" }
