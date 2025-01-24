@@ -139,10 +139,11 @@ build-verbosity = 0
 skip = ["cp37*", "pp*", "*-musllinux_*"]
 # check command
 test-command = "mhm -h && mhm {project}"
+manylinux-x86_64-image = "manylinux_2_28"
 
 [tool.cibuildwheel.linux]
 environment = { FC="gfortran", F77="gfortran", CC="gcc", CXX="g++" }
-before-all = "yum install netcdf-fortran-devel -y && nf-config"
+before-all = "dnf install netcdf-fortran-devel -y && nf-config"
 
 [tool.cibuildwheel.macos]
 environment = { FC="gfortran-14", F77="gfortran-14", CC="gcc-14", CXX="g++-14", MACOSX_DEPLOYMENT_TARGET="13.0" }
