@@ -50,7 +50,7 @@ jobs:
         - { os: windows-2022, arch: AMD64, shell: "msys2 {0}" }
     defaults:
       run:
-        shell: ${{ matrix.sys.shell }}
+        shell: ${{ matrix.cfg.shell }}
 
     steps:
       - if: runner.os == 'Windows'
