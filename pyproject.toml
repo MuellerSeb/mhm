@@ -149,6 +149,10 @@ before-all = "source CI-scripts/install-deps -c -p /usr && nf-config --all"
 environment = { FC="gfortran-14", F77="gfortran-14", CC="gcc-14", CXX="g++-14", MACOSX_DEPLOYMENT_TARGET="13.0" }
 before-all = "brew install netcdf-fortran && nf-config"
 
+[tool.cibuildwheel.windows]
+archs = ["auto64"]
+environment = { CC = "gcc", CXX = "g++", FC = "gfortran" }
+
 [[tool.cibuildwheel.overrides]]
 select = "*-macosx_arm64"
 inherit.environment = "append"
